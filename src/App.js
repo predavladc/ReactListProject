@@ -23,9 +23,15 @@ export default function App() {
 
   return (
     <div className="App">
-      <ToDoComponent data={tasklist[0]} />
+      {tasklist.map((task, index) => {
+        return (
+          <ToDoComponent key={index} data={task} />
+        )
+      })}
+
+      {/* <ToDoComponent data={tasklist[0]} />
       <ToDoComponent data={tasklist[1]} />
-      <ToDoComponent data={tasklist[2]} />
+      <ToDoComponent data={tasklist[2]} /> */}
     </div>
   );
 }
