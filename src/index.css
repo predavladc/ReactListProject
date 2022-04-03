@@ -11,3 +11,9 @@ body {
     color: #7b7b7c;
     padding: 0 30px;
   }
+
+  .listitems {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
