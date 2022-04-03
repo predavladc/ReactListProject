@@ -25,9 +25,17 @@ export default function App() {
     <div className="App">
       {tasklist.map((task, index) => {
         return (
-          <ToDoComponent key={index} data={task} />
+            <div className='listitems'>
+              <ToDoComponent key={index} data={task} />
+              <div className='buttons'>
+                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+            )
+          }
         )
-      })}
+      }
 
       {/* <ToDoComponent data={tasklist[0]} />
       <ToDoComponent data={tasklist[1]} />
