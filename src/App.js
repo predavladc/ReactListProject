@@ -1,37 +1,99 @@
 import React from "react";
 import "./index.css";
 import ToDoComponent from "./components/ToDo";
+import { useState } from "react";
+import UserInput from "./UserInput";
 
-export default function App() 
-{
-  const tasklist = [
+
+export default function App() {
+  const [tasks, setTasks] = useState([
     {
-        task: "Task 1",
+        id: 1,
+        title: "Task 1",
         description: "Smile all day.",
         status: "new",
     },
     {
-        task: "Task 2",
+        id: 2,
+        title: "Task 2",
         description: "Make a nice coffee",
         status: "new",
     },
     {
-        task: "Task 3",
+        id: 3,
+        title: "Task 3",
         description: "Hug a tree.",
         status: "new",
     }
-  ];
+  ])
+
+  const [beingEdited, setIsBeingEdited] = useState(null);
+
+  const handleUserInput = (event) => {
+    setUserInput({ ...userInput, [event.target.name]: event.target.value });
+  };
+
+  const [userInput, setUserInput] = useState({
+    title: "",
+    description: "",
+  });
+
+  const handleAddNewTask = (event) => {
+    console.log("print");
+    event.preventDefault();
+    // console.log("submitting the form");
+    const newTask = {
+      id: new Date().getTime(),
+      title: userInput.title,
+      description: userInput.description,
+      status: "new",
+    };
+    setTasks([...tasks, newTask]);
+
+    setUserInput({
+      title: "",
+      description: "",
+      status: "new",
+    });
+
+    event.target.reset();
+  };
+
+  const handleDeleteTask = (id) => {
+    const filteredTasks = tasks.filter((task) => task.id !== id)
+    setTasks(filteredTasks)
+  }
+
+  const handleEditTask = (id) => {
+    setIsBeingEdited(id)
+  }
+
+  if (beingEdited) {
+    return (
+      <>
+      <h1>EDITION MODE</h1>
+      <input type="text" placeholder="title"></input>
+      <input type="text" placeholder="description"></input>
+      <button>Save</button>
+      </>
+    )
+  }
 
   return (
-    <div className="row justify-content-md-center">
-      <div className="col col-lg-6">
-        <h1 className="title display-1">let's do this</h1>
-        {tasklist.map((task, index) => {
-          return (
-            <ToDoComponent key={index} data={task} />
-          )
-        })}
-      </div>
+
+    <div className="App">
+    <UserInput onInput={handleUserInput} onNewTask={handleAddNewTask} />
+
+      {tasks.map((task, index) => {
+        return (
+            <div className='listitems' key={index}>
+              <ToDoComponent data={task} onDelete={handleDeleteTask} onEdit={handleEditTask}/>
+
+            </div>
+            )
+          }
+        )
+      }
     </div>
   );
 }

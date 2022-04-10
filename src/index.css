@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    border: 1px solid red;
+
   }
 
 .task-container {
@@ -24,3 +24,9 @@ body {
   justify-content: center;
   font-family: 'Grape Nuts', cursive;
 }
+
+  .listitems {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
