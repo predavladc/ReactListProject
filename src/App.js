@@ -4,6 +4,7 @@ import ToDoComponent from "./components/ToDo";
 import { useState } from "react";
 import UserInput from "./UserInput";
 
+
 export default function App() {
   const [tasks, setTasks] = useState([
     {
@@ -79,6 +80,7 @@ export default function App() {
   }
 
   return (
+
     <div className="App">
     <UserInput onInput={handleUserInput} onNewTask={handleAddNewTask} />
 
