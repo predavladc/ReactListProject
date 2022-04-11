@@ -81,12 +81,12 @@ export default function App() {
 
   return (
 
-    <div className="App">
-    <UserInput onInput={handleUserInput} onNewTask={handleAddNewTask} />
-
+    <div className="App container">
+      <div className="row ">
+          <p className="title">let's do this!</p>
       {tasks.map((task, index) => {
         return (
-            <div className='listitems' key={index}>
+            <div className="listitems" key={index}>
               <ToDoComponent data={task} onDelete={handleDeleteTask} onEdit={handleEditTask}/>
 
             </div>
@@ -94,6 +94,10 @@ export default function App() {
           }
         )
       }
+        <div className="listitems">
+        <UserInput onInput={handleUserInput} onNewTask={handleAddNewTask} />
+        </div>
+      </div>
     </div>
   );
 }
