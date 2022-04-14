@@ -5,12 +5,20 @@ body {
     background-attachment: fixed;
   }
 
+.title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Grape Nuts', cursive;
+    color: #0f0f0f;
+    font-size: 6rem;
+  }
+
 .container {
   display: flex;
   justify-content: center;
 }
 
-  .listitems {
+.listitems {
   display: flex;
   flex-direction: column;  
   align-items: center;
@@ -22,10 +30,28 @@ body {
   border: 2px solid #9190a1;
   }
 
-.title {
+.addtolist {
   display: flex;
-  justify-content: center;
-  font-family: 'Grape Nuts', cursive;
-  color: #0f0f0f;
-  font-size: 6rem;
+  flex-direction: column;  
+  align-items: center;
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #1c1c1c;
+}
+
+button.btn.btn-edit {
+  background-color: #9190a1;
+  border: 2px solid #9190a1;
+  color: black;
+  opacity: 1;
+  margin-right: 1rem;
+}
+
+button.btn.btn-delete {
+  background-color: #780046;
+  border: 2px solid #780046;
+  color: white;
+  font-weight: 700;
+  opacity: 1;
+  margin-left: 1rem;
 }
