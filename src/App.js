@@ -94,7 +94,7 @@ export default function App() {
           }
         )
       }
-        <div className="listitems">
+        <div className="addtolist">
         <UserInput onInput={handleUserInput} onNewTask={handleAddNewTask} />
         </div>
       </div>
