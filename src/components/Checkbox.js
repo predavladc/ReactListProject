@@ -1,6 +1,6 @@
-const Checkbox = () => {
+const Checkbox = (props) => {
     return (
-        <input id="todo-1" type="checkbox" />
+        <input type="checkbox" onClick={() => props.onClickBox(props.data.id)}/>
     );
 };
 

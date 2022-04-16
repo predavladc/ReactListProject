@@ -32,6 +32,7 @@ export default function App() {
   ]);
 
   const [beingEdited, setIsBeingEdited] = useState();
+  const [checked, setChecked] = useState();
 
   // useState(null);
 
@@ -42,6 +43,14 @@ export default function App() {
   const handleBeingEdited = (event) => {
     setIsBeingEdited({ ...beingEdited, [event.target.name]: event.target.value });
   };
+
+  const handleIsComplete = (event) => {
+    setChecked({ ...checked, [event.target.name]: event.target.value });
+  };
+
+
+
+
 
   const [userInput, setUserInput] = useState({
     title: "",
@@ -73,7 +82,6 @@ export default function App() {
     const filteredTasks = tasks.filter((task) => task.id !== id);
     setTasks(filteredTasks);
   };
-
   
 
   const handleEditTask = (id) => {
@@ -91,51 +99,98 @@ export default function App() {
     setIsBeingEdited()
   }
 
-  return (
-    <div className="App container">
-      <div className="row ">
-        <div className="title">
-          <Title />
-        </div>
-        {beingEdited ? (
-          <>
-            <div className="edition-mode container">
-              <div className="row">
-                <h1 className="edit-mode">EDITION MODE</h1>
-                <form>
+  // Checkbox Start
+  // const handleCheck = (event) => {
+  //   if (event === )
+  // };
+  
+  const handleCompleteTask = (id) => {
+    setChecked({ ...tasks.find(task => task.id === id)});
+  };
+
+  function completeFunction(id) {
+    const temporaryTodos = [...tasks];
+    temporaryTodos(id).status = !temporaryTodos.status;
+    setTasks(temporaryTodos);
+  }
+  
+  
+  //   const updatedList = [...checked];
+  //   if (event.target.checked) {
+  //     updatedList = [...checked, event.target.value];
+  //   } else {
+  //     updatedList.splice(checked.indexOf(event.target.value), 1);
+  //   }
+  //   setChecked(updatedList);
+  // };
+
+  // const isChecked = (item) =>
+  //  checked.includes(item) ? "checked-item" : "not-checked-item";
+// Checkbox Ending
+
+return (
+  <div className="App container">
+    <div className="row ">
+      <div className="title">
+        <Title />
+      </div>
+      {beingEdited ? (
+        <>
+          <div className="edition-mode container">
+            <div className="row">
+              <h1 className="edit-mode">EDITION MODE</h1>
+              <form className="edit-form">
+                <div className="edit-title">
+                <label for="FormControlTextarea1" class="form-label">Task:</label>
+                <br />
                   <input type="text" value={beingEdited.title} name="title" onChange={handleBeingEdited}></input>
-                  <input type="text" value={beingEdited.description} name="description" onChange={handleBeingEdited}></input>
+                </div>
+                <div className="edit-description">
+                  <label for="FormControlTextarea2" class="form-label">Description:</label>
+                  <textarea 
+                      class="form-control" 
+                      id="FormControlTextarea2" 
+                      rows="3"  
+                      value={beingEdited.description} 
+                      name="description" 
+                      onChange={handleBeingEdited}>
+                    </textarea>
+                </div>
+              </form>
+              <div className="row button">
+                <div className="col-1 ">
                   <button className="btn btn-saved" onClick={handleSaveEdit}>Save</button>
-                </form>
+                </div>
               </div>
             </div>
-          </>
-        ) : (
-          <>
-            {tasks.sort((a,b) => a.id - b.id).map((task, index) => {
-              return (
-                <div className="listitems" key={index}>
-                  <div className="col-6">
-                    <Checkbox />
-                    <ToDoComponent
-                      data={task}
-                      onDelete={handleDeleteTask}
-                      onSubmit={handleAddNewTask}
-                      onEdit={handleEditTask}
-                    />
-                  </div>
+          </div>
+        </>
+      ) : (
+        <>
+          {tasks.sort((a,b) => a.id - b.id).map((task, index) => {
+            return (
+              <div className="listitems" key={index}>
+                <div className="col-6">
+                  <Checkbox />
+                  <ToDoComponent
+                    data={task}
+                    onDelete={handleDeleteTask}
+                    onSubmit={handleAddNewTask}
+                    onEdit={handleEditTask}
+                  />
                 </div>
-              );
-            })}
-            <div className="addtolist">
-              <UserInput
-                onInput={handleUserInput}
-                onNewTask={handleAddNewTask}
-              />
-            </div>
-          </>
-        )}
-      </div>
+              </div>
+            );
+          })}
+          <div className="addtolist">
+            <UserInput
+              onInput={handleUserInput}
+              onNewTask={handleAddNewTask}
+            />
+          </div>
+        </>
+      )}
     </div>
-  );
+  </div>
+);
 }
