@@ -1,6 +1,6 @@
 const Checkbox = (props) => {
     return (
-        <input type="checkbox" onClick={() => props.onClickBox(props.data.id)}/>
+        <input type="checkbox" checked={props.completed} onChange={(e) => props.onComplete(props.id, e)}/>
     );
 };
 
