@@ -13,7 +13,7 @@ body {
     font-size: 4rem;
   }
 
-.container {
+.app.container {
   display: flex;
   justify-content: center;
 }
@@ -26,18 +26,9 @@ body {
   background-color: #fcfcf7;
   opacity: 0.5;
   font-family: 'Montserrat', sans-serif;
-  color: #1c1c1c;
+  color: black;
   border: 2px solid #9190a1;
   }
-
-.addtolist {
-  display: flex;
-  flex-direction: column;  
-  align-items: center;
-  padding: 1rem;
-  font-family: 'Montserrat', sans-serif;
-  color: #1c1c1c;
-}
 
 .buttons {
   display: flex;
@@ -61,24 +52,88 @@ button.btn.btn-delete {
   margin-left: 1rem;
 }
 
+/* Add Form Styling */
+
+form.add-form {
+  display: flex;
+  justify-content: center;
+  border: 1 px solid red;
+}
+
+.addtolist {
+  display: flex;
+  justify-content: center;  
+  padding: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+.add-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+  background-color: #9190a1;
+  border: 2px solid #9190a1;
+  color: black;
+}
+
+.add-description {
+ margin-left: 1rem;
+}
+
 /* Edition Mode */
 
 .edition-mode {
   display: flex;
   flex-direction: column;  
-  align-items: center;
-  border: 1px solid red;
-}
-
-button.btn.btn-saved {
-  background-color: #9190a1;
-  border: 2px solid #9190a1;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #fcfcf7;
+  opacity: 0.7;
+  font-family: 'Montserrat', sans-serif;
   color: black;
-  opacity: 1;
-  margin-top: 1 rem;
+  border: 2px solid #9190a1;
 }
 
 h1.edit-mode {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
+
+form.edit-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+textarea.form-control {
+  color: black;
+}
+
+.edit-description {
+  margin-top: 1.5rem;
+}
+
+button.btn.btn-saved {
+  display: flex;
+  justify-content: center;  
+  background-color: #9190a1;
+  border: 2px solid #9190a1;
+  color: black;
+  opacity: 1;
+}
+
+.row.button {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Checkbox */
+
+/* .task-container {
+  text-decoration: line-through;
+} */
