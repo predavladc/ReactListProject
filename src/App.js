@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import Title from "./components/Title";
 import ToDoComponent from "./components/ToDo";
-import { useState } from "react";
 import UserInput from "./components/UserInput";
 import Checkbox from "./components/Checkbox";
 
@@ -13,21 +12,24 @@ export default function App() {
       title: "Smile all day.",
       description:
         "Studies have shown that smiling releases endorphins, other natural painkillers, and serotonin. 9 Together, these brain chemicals make us feel good from head to toe. So close your eyes, relax your face and think of something that I make you really happy!",
-      status: "new",
+      level: "new",
+      completed: false,
     },
     {
       id: 2,
       title: "Make a delicious coffee.",
       description:
         "Packed with antioxidants and vitamins such as riboflavin, magnesium, and potassium, coffee can help to lessen depression, promote a healthy heart, and reduce the risk of developing type 2 diabetes, Parkinson's disease, Alzheimer's disease, liver disease, and liver cancer. So grab that fancy cup and pour youself some fresh homemade french press coffee!",
-      status: "new",
+      level: "new",
+      completed: false,
     },
     {
       id: 3,
       title: "Hug a tree.",
       description:
         "Hugging a tree increases levels of hormone oxytocin, which is responsible for feeling calm and emotional bonding. When hugging a tree, it makes you feel happier. So go into the woods, find a tree, take a deep breath and embrace this tree!",
-      status: "new",
+      level: "new",
+      completed: false,
     },
   ]);
 
@@ -48,10 +50,6 @@ export default function App() {
     setChecked({ ...checked, [event.target.name]: event.target.value });
   };
 
-
-
-
-
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
@@ -64,15 +62,16 @@ export default function App() {
       id: new Date().getTime(),
       title: userInput.title,
       description: userInput.description,
-      status: "new",
+      level: "new",
+      completed: false,
     };
     setTasks([...tasks, newTask]);
 
     setUserInput({
       title: "",
       description: "",
-      //Do we need the status?
-      status: "new",
+      //Do we need the level?
+      level: "new",
     });
 
     event.target.reset();
@@ -100,19 +99,30 @@ export default function App() {
   }
 
   // Checkbox Start
-  // const handleCheck = (event) => {
-  //   if (event === )
-  // };
   
-  const handleCompleteTask = (id) => {
-    setChecked({ ...tasks.find(task => task.id === id)});
+  // const handleCompleteTask = (id) => {
+  //   setChecked({ ...tasks.find(task => task.id === id)});
+  // };
+
+  const handleComplete = (id, e) => {
+    setTasks(tasks.map(task => {
+      if (task.id === id) {
+          return {
+            ...task,
+            completed: e.target.checked
+          }
+      } else {
+        return task
+      }
+    }))
   };
 
-  function completeFunction(id) {
-    const temporaryTodos = [...tasks];
-    temporaryTodos(id).status = !temporaryTodos.status;
-    setTasks(temporaryTodos);
-  }
+
+
+  // const completeFunction = () => {    
+  //   temporaryTodos(id).level = temporaryTodos.level("complete")
+  //   setTasks(temporaryTodos);
+  // }
   
   
   //   const updatedList = [...checked];
@@ -171,7 +181,7 @@ return (
             return (
               <div className="listitems" key={index}>
                 <div className="col-6">
-                  <Checkbox />
+                  <Checkbox onComplete={handleComplete} completed={task.completed} id={task.id}/>
                   <ToDoComponent
                     data={task}
                     onDelete={handleDeleteTask}

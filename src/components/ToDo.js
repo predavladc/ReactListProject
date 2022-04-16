@@ -5,8 +5,10 @@ const ToDoComponent = (props) => {
     return (
         <>
             <div className="task-container">
+            <div className={props.data.completed ? 'task-container completed' : 'task-container'}>
                 <h3 className="task-title">{props.data.title}</h3>
                 <span className="task-description">{props.data.description}</span>
+                </div>
             </div>
                 <br />
             <div className='buttons'>
